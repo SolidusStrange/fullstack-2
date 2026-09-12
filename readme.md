@@ -1,2 +1,2 @@
 # fullstack
-Prueba
+Pruebas
