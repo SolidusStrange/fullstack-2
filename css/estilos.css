@@ -1,0 +1,306 @@
+:root {
+    --azul: #176b87;
+    --azul-oscuro: #114b5f;
+    --celeste: #eaf5f8;
+    --fondo: #f5f7f8;
+    --texto: #24333b;
+    --borde: #d7e0e4;
+    --blanco: #ffffff;
+    --alerta: #b42318;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 16px max(24px, calc((100% - 1000px) / 2));
+    background: var(--blanco);
+    border-top: 4px solid var(--azul);
+    border-bottom: 1px solid var(--borde);
+}
+
+header h1 {
+    margin: 0;
+    color: var(--azul-oscuro);
+    font-size: 1.4rem;
+}
+
+header h1 i,
+h2 i,
+h3 i {
+    color: var(--azul);
+}
+
+header p {
+    margin: 0;
+}
+
+header #saludo-usuario {
+    margin-left: auto;
+    color: #5d6d75;
+}
+
+main {
+    width: min(100% - 32px, 960px);
+    margin: 32px auto;
+}
+
+section {
+    margin-bottom: 20px;
+    padding: 24px;
+    background: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+body[data-page="login"] main,
+body[data-page="registro"] main {
+    width: min(100% - 32px, 480px);
+    margin-top: 54px;
+}
+
+body[data-page="login"] header,
+body[data-page="registro"] header {
+    justify-content: center;
+}
+
+h2,
+h3 {
+    margin-top: 0;
+    color: var(--azul-oscuro);
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+p {
+    margin-top: 0;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    color: var(--texto);
+    font: inherit;
+    background: var(--blanco);
+    border: 1px solid #aebfc6;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 3px solid #bfe3ed;
+    border-color: var(--azul);
+}
+
+button,
+#lista-medicos a {
+    display: inline-block;
+    padding: 9px 14px;
+    color: var(--blanco);
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--azul);
+    border: 1px solid var(--azul);
+    border-radius: 5px;
+}
+
+button:hover,
+#lista-medicos a:hover {
+    background: var(--azul-oscuro);
+    border-color: var(--azul-oscuro);
+}
+
+button:disabled {
+    cursor: not-allowed;
+    color: #829098;
+    background: #e8edef;
+    border-color: #e8edef;
+}
+
+a {
+    color: var(--azul);
+}
+
+#mensaje-login,
+#mensaje-registro,
+#mensaje-cita {
+    min-height: 24px;
+    margin-top: 16px;
+    color: var(--alerta);
+    font-weight: bold;
+}
+
+#lista-medicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+}
+
+#lista-medicos article {
+    padding: 18px;
+    border: 1px solid var(--borde);
+    border-radius: 7px;
+}
+
+#lista-medicos article h3 {
+    margin: 8px 0 2px;
+}
+
+#lista-medicos article p {
+    color: #5d6d75;
+}
+
+.icono-medico {
+    color: var(--azul);
+    font-size: 1.4rem;
+}
+
+#mis-citas ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+#datos-medico {
+    padding: 10px 12px;
+    color: var(--azul-oscuro);
+    font-weight: bold;
+    background: var(--celeste);
+    border-radius: 5px;
+}
+
+#titulo-calendario {
+    margin-bottom: 12px;
+}
+
+#mes-actual {
+    display: inline-block;
+    min-width: 150px;
+    margin: 0 8px;
+    text-align: center;
+    color: var(--azul-oscuro);
+}
+
+#mes-anterior,
+#mes-siguiente {
+    padding: 5px 10px;
+}
+
+table {
+    width: 100%;
+    margin-top: 16px;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 8px 4px;
+    color: var(--azul-oscuro);
+    font-size: 0.85rem;
+}
+
+td {
+    width: 14.28%;
+    height: 46px;
+    padding: 3px;
+    text-align: center;
+    border: 1px solid #edf1f2;
+}
+
+.boton-dia {
+    width: 100%;
+    min-height: 36px;
+    padding: 5px 2px;
+    font-weight: normal;
+}
+
+.boton-dia[aria-pressed="true"],
+.boton-hora[aria-pressed="true"] {
+    background: var(--azul-oscuro);
+    border-color: var(--azul-oscuro);
+}
+
+fieldset {
+    margin: 20px 0;
+    padding: 16px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+}
+
+legend {
+    padding: 0 6px;
+    font-weight: bold;
+    color: var(--azul-oscuro);
+}
+
+#horarios-disponibles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.boton-hora {
+    min-width: 74px;
+    font-weight: normal;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 14px 16px;
+    }
+
+    header #saludo-usuario {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    main {
+        width: min(100% - 24px, 960px);
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+    th {
+        font-size: 0.7rem;
+    }
+
+    td {
+        height: 40px;
+    }
+
+    .boton-dia {
+        min-height: 30px;
+        font-size: 0.78rem;
+    }
+}
