@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | Clínica Salud</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body data-page="registro">
+  <header>
+    <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
+    <p>Registro de paciente</p>
+    <p><a href="login.html">← Volver al inicio de sesión</a></p>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-registro">
+      <h2 id="titulo-registro"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Crear una cuenta</h2>
+      <p>La contraseña debe tener al menos 8 caracteres, una letra mayúscula y una letra minúscula.</p>
+
+      <form id="form-registro">
+        <p>
+          <label for="nombre-registro">Nombre completo</label><br>
+          <input id="nombre-registro" name="nombre" type="text" required>
+        </p>
+        <p>
+          <label for="usuario-registro">Usuario</label><br>
+          <input id="usuario-registro" name="usuario" type="text" required>
+        </p>
+        <p>
+          <label for="contrasena-registro">Contraseña</label><br>
+          <input id="contrasena-registro" name="contrasena" type="password" required>
+        </p>
+        <p>
+          <label for="confirmar-contrasena">Confirmar contraseña</label><br>
+          <input id="confirmar-contrasena" name="confirmar-contrasena" type="password" required>
+        </p>
+        <button type="submit"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Registrarme</button>
+      </form>
+
+      <p id="mensaje-registro" role="alert" aria-live="polite"></p>
+    </section>
+  </main>
+</body>
+</html>

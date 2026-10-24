@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar | Clínica Salud</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/app.js" defer></script>
+</head>
+
+<body data-page="login">
+  <header>
+    <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
+    <p>Portal de pacientes</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-login">
+      <h2 id="titulo-login">Iniciar sesión</h2>
+      <p>Usa el acceso de prueba: <strong>admin</strong> / <strong>admin</strong>.</p>
+
+      <form id="form-login">
+        <p>
+          <label for="usuario">Usuario</label><br>
+          <input id="usuario" name="usuario" type="text" autocomplete="username" required>
+        </p>
+        <p>
+          <label for="contrasena">Contraseña</label><br>
+          <input id="contrasena" name="contrasena" type="password" autocomplete="current-password" required>
+        </p>
+        <button type="submit"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Ingresar</button>
+      </form>
+
+      <p id="mensaje-login" role="alert" aria-live="polite"></p>
+      <p>¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a>.</p>
+    </section>
+  </main>
+</body>
+</html>

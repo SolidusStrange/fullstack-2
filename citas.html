@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar cita | Clínica Salud</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body data-page="citas">
+  <header>
+    <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
+    <p><a href="index.html">← Volver a especialidades</a></p>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-cita">
+      <h2 id="titulo-cita"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> Reservar una cita</h2>
+      <p id="datos-medico" aria-live="polite"></p>
+
+      <form id="form-cita">
+        <section aria-labelledby="titulo-calendario">
+          <h3 id="titulo-calendario"><i class="fa-regular fa-calendar" aria-hidden="true"></i> Selecciona una fecha</h3>
+          <button id="mes-anterior" type="button" aria-label="Mes anterior">←</button>
+          <strong id="mes-actual" aria-live="polite"></strong>
+          <button id="mes-siguiente" type="button" aria-label="Mes siguiente">→</button>
+
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Lun</th>
+                <th scope="col">Mar</th>
+                <th scope="col">Mié</th>
+                <th scope="col">Jue</th>
+                <th scope="col">Vie</th>
+                <th scope="col">Sáb</th>
+                <th scope="col">Dom</th>
+              </tr>
+            </thead>
+            <tbody id="calendario"></tbody>
+          </table>
+          <p id="mensaje-fecha" aria-live="polite">Elige un día disponible en el calendario.</p>
+        </section>
+
+        <fieldset>
+          <legend>Horario</legend>
+          <p id="mensaje-horarios" aria-live="polite">Elige una fecha para consultar los horarios.</p>
+          <div id="horarios-disponibles"></div>
+        </fieldset>
+
+        <p>
+          <label for="motivo">Motivo de la consulta</label><br>
+          <textarea id="motivo" name="motivo" rows="3" required></textarea>
+        </p>
+
+        <button id="confirmar-cita" type="submit" disabled>Confirmar cita</button>
+      </form>
+      <p id="mensaje-cita" role="alert" aria-live="polite"></p>
+    </section>
+  </main>
+</body>
+</html>
