@@ -1,3 +1,4 @@
+/* guarda los colores usados en la página */
 :root {
     --azul: #176b87;
     --azul-oscuro: #114b5f;
@@ -9,10 +10,12 @@
     --alerta: #b42318;
 }
 
+/* hace más predecible el tamaño de los elementos */
 * {
     box-sizing: border-box;
 }
 
+/* da el estilo general de la página */
 body {
     margin: 0;
     background: var(--fondo);
@@ -21,6 +24,7 @@ body {
     line-height: 1.5;
 }
 
+/* organiza la parte superior de cada página */
 header {
     display: flex;
     align-items: center;
@@ -53,11 +57,13 @@ header #saludo-usuario {
     color: #5d6d75;
 }
 
+/* centra el contenido principal */
 main {
     width: min(100% - 32px, 960px);
     margin: 32px auto;
 }
 
+/* da forma a cada bloque de contenido */
 section {
     margin-bottom: 20px;
     padding: 24px;
@@ -97,6 +103,7 @@ label {
     font-weight: bold;
 }
 
+/* da el mismo estilo a los campos del formulario */
 input,
 textarea,
 select {
@@ -120,6 +127,7 @@ select:focus {
     border-color: var(--azul);
 }
 
+/* da estilo a los botones y enlaces de reserva */
 button,
 #lista-medicos a {
     display: inline-block;
@@ -160,6 +168,7 @@ a {
     font-weight: bold;
 }
 
+/* ordena las tarjetas de los médicos */
 #lista-medicos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -215,6 +224,7 @@ a {
     padding: 5px 10px;
 }
 
+/* organiza los días del calendario */
 table {
     width: 100%;
     margin-top: 16px;
@@ -272,6 +282,7 @@ legend {
     font-weight: normal;
 }
 
+/* ajusta la página para pantallas pequeñas */
 @media (max-width: 600px) {
     header {
         padding: 14px 16px;

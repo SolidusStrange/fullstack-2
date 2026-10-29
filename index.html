@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Especialidades | Clínica Salud</title>
+  <!-- importa los iconos usados en la página -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
   <script src="js/app.js" defer></script>
 </head>
 <body data-page="inicio">
+  <!-- muestra el nombre de la clínica y la sesión activa -->
   <header>
     <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
     <p id="saludo-usuario"></p>
@@ -16,6 +18,7 @@
   </header>
 
   <main>
+    <!-- permite elegir la especialidad médica -->
     <section aria-labelledby="titulo-especialidades">
       <h2 id="titulo-especialidades"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Solicita una cita</h2>
       <p>Elige una especialidad para consultar a sus médicos disponibles.</p>
@@ -26,12 +29,14 @@
       </select>
     </section>
 
+    <!-- muestra los médicos de la especialidad elegida -->
     <section aria-labelledby="titulo-medicos">
       <h2 id="titulo-medicos"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Médicos</h2>
       <p id="mensaje-medicos" aria-live="polite">Selecciona una especialidad para ver los médicos.</p>
       <div id="lista-medicos"></div>
     </section>
 
+    <!-- muestra las citas del usuario -->
     <section aria-labelledby="titulo-mis-citas">
       <h2 id="titulo-mis-citas"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i> Mis citas</h2>
       <div id="mis-citas"></div>

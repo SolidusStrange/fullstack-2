@@ -4,22 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reservar cita | Clínica Salud</title>
+  <!-- importa los iconos usados en la página -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
   <script src="js/app.js" defer></script>
 </head>
 <body data-page="citas">
+  <!-- muestra el título y el enlace para volver -->
   <header>
     <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
     <p><a href="index.html">← Volver a especialidades</a></p>
   </header>
 
   <main>
+    <!-- permite elegir la fecha y el horario de la cita -->
     <section aria-labelledby="titulo-cita">
       <h2 id="titulo-cita"><i class="fa-solid fa-calendar-plus" aria-hidden="true"></i> Reservar una cita</h2>
       <p id="datos-medico" aria-live="polite"></p>
 
       <form id="form-cita">
+        <!-- muestra los días que se pueden elegir -->
         <section aria-labelledby="titulo-calendario">
           <h3 id="titulo-calendario"><i class="fa-regular fa-calendar" aria-hidden="true"></i> Selecciona una fecha</h3>
           <button id="mes-anterior" type="button" aria-label="Mes anterior">←</button>
@@ -43,6 +47,7 @@
           <p id="mensaje-fecha" aria-live="polite">Elige un día disponible en el calendario.</p>
         </section>
 
+        <!-- muestra las horas disponibles del día -->
         <fieldset>
           <legend>Horario</legend>
           <p id="mensaje-horarios" aria-live="polite">Elige una fecha para consultar los horarios.</p>
@@ -56,6 +61,7 @@
 
         <button id="confirmar-cita" type="submit" disabled>Confirmar cita</button>
       </form>
+      <!-- muestra el resultado de la reserva -->
       <p id="mensaje-cita" role="alert" aria-live="polite"></p>
     </section>
   </main>

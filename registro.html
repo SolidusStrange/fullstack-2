@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro | Clínica Salud</title>
+  <!-- importa los iconos usados en la página -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
   <link rel="stylesheet" href="css/estilos.css">
   <script src="js/app.js" defer></script>
 </head>
 <body data-page="registro">
+  <!-- muestra el título y el enlace para volver -->
   <header>
     <h1><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i> Clínica Salud</h1>
     <p>Registro de paciente</p>
@@ -16,6 +18,7 @@
   </header>
 
   <main>
+    <!-- permite crear una cuenta nueva -->
     <section aria-labelledby="titulo-registro">
       <h2 id="titulo-registro"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Crear una cuenta</h2>
       <p>La contraseña debe tener al menos 8 caracteres, una letra mayúscula y una letra minúscula.</p>
@@ -40,6 +43,7 @@
         <button type="submit"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Registrarme</button>
       </form>
 
+      <!-- muestra avisos del registro -->
       <p id="mensaje-registro" role="alert" aria-live="polite"></p>
     </section>
   </main>

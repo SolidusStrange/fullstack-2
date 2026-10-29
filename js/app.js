@@ -1,7 +1,9 @@
+// guarda los usuarios que ya vienen con la página
 const usuarios = [
     { usuario: "admin", contrasena: "admin", nombre: "Paciente de prueba" }
 ];
 
+// guarda los médicos y sus especialidades
 const medicos = [
     { id: 1, nombre: "Dra. Ana Morales", especialidad: "Medicina general" },
     { id: 2, nombre: "Dr. Pablo Rojas", especialidad: "Medicina general" },
@@ -9,7 +11,7 @@ const medicos = [
     { id: 4, nombre: "Dr. Diego Fuentes", especialidad: "Cardiología" }
 ];
 
-// Horas que cada médico atiende por fecha.
+// guarda las horas de atención de cada médico
 const disponibilidad = {
     1: {
         "2026-10-24": ["09:00", "10:00", "11:00"],
@@ -29,19 +31,21 @@ const disponibilidad = {
     }
 };
 
-// Estas citas existen antes de que la persona use la página.
+// guarda citas de ejemplo para comenzar
 const citasIniciales = [
     { medicoId: 1, fecha: "2026-10-24", hora: "09:00", paciente: "Otro paciente" },
     { medicoId: 3, fecha: "2026-10-25", hora: "10:30", paciente: "Otro paciente" },
     { medicoId: 4, fecha: "2026-10-26", hora: "08:30", paciente: "Otro paciente" }
 ];
 
+// nombres usados para guardar datos en el navegador
 const CLAVE_CITAS = "clinicaSaludCitas";
 const CLAVE_USUARIO = "clinicaSaludUsuario";
 const CLAVE_USUARIOS_REGISTRADOS = "clinicaSaludUsuariosRegistrados";
 
-// -------------------- Funciones generales --------------------
+// funciones que se usan en varias partes
 
+// revisa que los campos tengan información
 function validarInputVacio() {
     for (let i = 0; i < arguments.length; i++) {
         if (arguments[i] === "") {
@@ -53,6 +57,7 @@ function validarInputVacio() {
     return false;
 }
 
+// obtiene las citas guardadas en el navegador
 function obtenerCitas() {
     const citasLocalStorage = localStorage.getItem(CLAVE_CITAS);
 
@@ -63,10 +68,12 @@ function obtenerCitas() {
     return JSON.parse(citasLocalStorage);
 }
 
+// guarda las citas en el navegador
 function guardarCitas(citas) {
     localStorage.setItem(CLAVE_CITAS, JSON.stringify(citas));
 }
 
+// obtiene los datos de quien inició sesión
 function obtenerUsuarioActual() {
     const usuarioLocalStorage = localStorage.getItem(CLAVE_USUARIO);
 
@@ -77,6 +84,7 @@ function obtenerUsuarioActual() {
     return JSON.parse(usuarioLocalStorage);
 }
 
+// obtiene las cuentas creadas por los usuarios
 function obtenerUsuariosRegistrados() {
     const usuariosLocalStorage = localStorage.getItem(CLAVE_USUARIOS_REGISTRADOS);
 
@@ -87,6 +95,7 @@ function obtenerUsuariosRegistrados() {
     return JSON.parse(usuariosLocalStorage);
 }
 
+// junta las cuentas de prueba y las registradas
 function obtenerTodosLosUsuarios() {
     const usuariosRegistrados = obtenerUsuariosRegistrados();
     const todosLosUsuarios = [];
@@ -102,6 +111,7 @@ function obtenerTodosLosUsuarios() {
     return todosLosUsuarios;
 }
 
+// revisa que la contraseña cumpla las reglas
 function validarContrasena(contrasena) {
     let tieneMayuscula = false;
     let tieneMinuscula = false;
@@ -129,6 +139,7 @@ function validarContrasena(contrasena) {
     return false;
 }
 
+// envía al acceso si no hay una sesión iniciada
 function protegerPagina() {
     if (obtenerUsuarioActual() === null) {
         window.location = "login.html";
@@ -138,6 +149,7 @@ function protegerPagina() {
     return true;
 }
 
+// busca un médico usando su número
 function obtenerMedicoPorId(idMedico) {
     for (let i = 0; i < medicos.length; i++) {
         if (medicos[i].id === idMedico) {
@@ -148,6 +160,7 @@ function obtenerMedicoPorId(idMedico) {
     return null;
 }
 
+// revisa si una hora ya fue reservada
 function estaOcupado(idMedico, fecha, hora) {
     const citas = obtenerCitas();
 
@@ -164,6 +177,7 @@ function estaOcupado(idMedico, fecha, hora) {
     return false;
 }
 
+// busca las horas que todavía se pueden reservar
 function obtenerHorasLibres(idMedico, fecha) {
     const horasLibres = [];
     const horasDelMedico = disponibilidad[idMedico][fecha];
@@ -181,13 +195,15 @@ function obtenerHorasLibres(idMedico, fecha) {
     return horasLibres;
 }
 
+// cambia la fecha para mostrarla de forma más clara
 function formatoFecha(fecha) {
     const fechaSeparada = fecha.split("-");
     return fechaSeparada[2] + "/" + fechaSeparada[1] + "/" + fechaSeparada[0];
 }
 
-// -------------------- Login --------------------
+// acciones de la página de inicio de sesión
 
+// prepara el formulario para iniciar sesión
 function iniciarLogin() {
     if (obtenerUsuarioActual() !== null) {
         window.location = "index.html";
@@ -196,6 +212,7 @@ function iniciarLogin() {
 
     const formularioJS = document.getElementById("form-login");
 
+    // revisa los datos cuando la persona envía el formulario de acceso
     formularioJS.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -203,7 +220,7 @@ function iniciarLogin() {
         const contrasenaIngresada = document.getElementById("contrasena").value.trim();
         const mensajeLogin = document.getElementById("mensaje-login");
 
-        // Si la función devuelve true, detenemos el proceso.
+        // detiene el acceso si falta algún dato
         if (validarInputVacio(usuarioIngresado, contrasenaIngresada)) {
             return;
         }
@@ -237,11 +254,13 @@ function iniciarLogin() {
     });
 }
 
-// -------------------- Registro --------------------
+// acciones de la página de registro
 
+// prepara el formulario para crear una cuenta
 function iniciarRegistro() {
     const formularioJS = document.getElementById("form-registro");
 
+    // revisa y guarda la cuenta cuando se envía el formulario
     formularioJS.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -289,8 +308,9 @@ function iniciarRegistro() {
     });
 }
 
-// -------------------- Página principal --------------------
+// acciones de la página principal
 
+// prepara la selección de médicos y las citas
 function iniciarInicio() {
     if (protegerPagina() === false) {
         return;
@@ -307,16 +327,19 @@ function iniciarInicio() {
     cargarEspecialidades(selectorEspecialidad);
     mostrarMisCitas(usuario.nombre, misCitas);
 
+    // actualiza la lista al elegir una especialidad
     selectorEspecialidad.addEventListener("change", function () {
         mostrarMedicos(selectorEspecialidad.value, listaMedicos, mensajeMedicos);
     });
 
+    // termina la sesión y vuelve a la página de acceso
     document.getElementById("cerrar-sesion").addEventListener("click", function () {
         localStorage.removeItem(CLAVE_USUARIO);
         window.location = "login.html";
     });
 }
 
+// agrega las especialidades sin repetirlas
 function cargarEspecialidades(selectorEspecialidad) {
     for (let i = 0; i < medicos.length; i++) {
         let especialidadRepetida = false;
@@ -336,6 +359,7 @@ function cargarEspecialidades(selectorEspecialidad) {
     }
 }
 
+// muestra los médicos de la especialidad elegida
 function mostrarMedicos(especialidad, listaMedicos, mensajeMedicos) {
     listaMedicos.innerHTML = "";
 
@@ -374,6 +398,7 @@ function mostrarMedicos(especialidad, listaMedicos, mensajeMedicos) {
     mensajeMedicos.textContent = "Se encontraron " + cantidadMedicos + " médico(s).";
 }
 
+// muestra las citas que pertenecen al usuario
 function mostrarMisCitas(nombreUsuario, contenedor) {
     const citas = obtenerCitas();
     const lista = document.createElement("ul");
@@ -400,8 +425,9 @@ function mostrarMisCitas(nombreUsuario, contenedor) {
     }
 }
 
-// -------------------- Reserva de citas --------------------
+// acciones para reservar una cita
 
+// prepara el calendario y la reserva de una cita
 function iniciarCitas() {
     if (protegerPagina() === false) {
         return;
@@ -432,6 +458,7 @@ function iniciarCitas() {
     const fechaSeparada = primeraFecha.split("-");
     const mesCalendario = new Date(Number(fechaSeparada[0]), Number(fechaSeparada[1]) - 1, 1);
 
+    // dibuja el mes con sus días disponibles
     function dibujarCalendario() {
         const nombresMeses = [
             "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
@@ -446,7 +473,7 @@ function iniciarCitas() {
         tituloMes.textContent = nombresMeses[mes] + " " + anio;
         calendario.innerHTML = "";
 
-        // Se forman seis filas de siete días, como un calendario convencional.
+        // crea las filas y los días del calendario
         for (let fila = 0; fila < 6; fila++) {
             const filaCalendario = document.createElement("tr");
 
@@ -472,11 +499,12 @@ function iniciarCitas() {
                         botonDia.setAttribute("aria-pressed", "true");
                     }
 
-                    // Un día sin agenda o con todas sus horas tomadas no puede seleccionarse.
+                    // desactiva los días sin horas libres
                     if (tieneHoras === false || horasLibres.length === 0) {
                         botonDia.disabled = true;
                         botonDia.title = "No hay horas disponibles este día.";
                     } else {
+                        // guarda la fecha elegida y muestra sus horarios
                         botonDia.addEventListener("click", function (event) {
                             fechaSeleccionada = event.target.getAttribute("data-fecha");
                             horaSeleccionada = "";
@@ -501,16 +529,19 @@ function iniciarCitas() {
         }
     }
 
+    // cambia al mes anterior
     document.getElementById("mes-anterior").addEventListener("click", function () {
         mesCalendario.setMonth(mesCalendario.getMonth() - 1);
         dibujarCalendario();
     });
 
+    // cambia al mes siguiente
     document.getElementById("mes-siguiente").addEventListener("click", function () {
         mesCalendario.setMonth(mesCalendario.getMonth() + 1);
         dibujarCalendario();
     });
 
+    // guarda la cita cuando se envía el formulario
     formularioJS.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -521,7 +552,7 @@ function iniciarCitas() {
             return;
         }
 
-        // Comprobamos una vez más antes de guardar la cita.
+        // revisa otra vez que la hora siga libre
         if (estaOcupado(idMedico, fechaSeleccionada, horaSeleccionada)) {
             mensajeCita.textContent = "Ese horario ya fue tomado. Selecciona otro.";
             botonConfirmar.disabled = true;
@@ -560,6 +591,7 @@ function iniciarCitas() {
     dibujarCalendario();
 }
 
+// busca la primera fecha disponible del médico
 function obtenerPrimeraFecha(idMedico) {
     for (let fecha in disponibilidad[idMedico]) {
         return fecha;
@@ -568,6 +600,7 @@ function obtenerPrimeraFecha(idMedico) {
     return "2026-01-01";
 }
 
+// crea una fecha con el formato usado en la página
 function crearFecha(anio, mes, dia) {
     let mesTexto = mes;
     let diaTexto = dia;
@@ -583,6 +616,7 @@ function crearFecha(anio, mes, dia) {
     return anio + "-" + mesTexto + "-" + diaTexto;
 }
 
+// muestra y permite elegir una hora disponible
 function mostrarHorarios(idMedico, fecha, contenedorHorarios, mensajeHorarios, botonConfirmar, guardarHoraSeleccionada) {
     contenedorHorarios.innerHTML = "";
     botonConfirmar.disabled = true;
@@ -608,6 +642,7 @@ function mostrarHorarios(idMedico, fecha, contenedorHorarios, mensajeHorarios, b
         botonHora.textContent = horasLibres[i];
         botonHora.setAttribute("data-hora", horasLibres[i]);
 
+        // marca la hora elegida para poder confirmar la cita
         botonHora.addEventListener("click", function (event) {
             const botones = contenedorHorarios.getElementsByTagName("button");
 
@@ -625,7 +660,7 @@ function mostrarHorarios(idMedico, fecha, contenedorHorarios, mensajeHorarios, b
     }
 }
 
-// Reconocemos la página abierta y ejecutamos la función que corresponde.
+// inicia las acciones de la página que está abierta
 document.addEventListener("DOMContentLoaded", function () {
     const pagina = document.body.getAttribute("data-page");
 
